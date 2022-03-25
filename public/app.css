@@ -373,7 +373,26 @@ html {
     padding-top: 12rem;
     background-color: azure;
 }
+
 .counter {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    --tw-border-opacity: 1;
+    border-color: rgb(0 0 0 / var(--tw-border-opacity));
+    border-width: .5rem;
+    border-radius: 9999px;
+    justify-content: space-between;
+    align-items: center;
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* .counter {
     --tw-shadow: 0 20px 25px -5px rgb(0 0 0/0.1),0 8px 10px -6px rgb(0 0 0/0.1);
     box-shadow: var(--tw-shadow);
     height: 20rem; width: 20rem;
@@ -386,4 +405,4 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */

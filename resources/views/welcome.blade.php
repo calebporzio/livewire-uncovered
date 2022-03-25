@@ -1,8 +1,6 @@
 <html>
-    <link rel="stylesheet" href="/app.css">
+    <link href="/app.css" rel="stylesheet">
     <script src="/app.js"></script>
 
-    @include('counter', ['count' => 1])
-
-    @stack('scripts')
-</html>
+    <!--  -->
+    
