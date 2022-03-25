@@ -370,8 +370,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 12rem;
-    background-color: azure;
+    padding-top: 8rem;
+    /* background-color: azure; */
 }
 
 .counter {
