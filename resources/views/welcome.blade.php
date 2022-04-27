@@ -1,8 +1,9 @@
 <html>
     <link href="/app.css" rel="stylesheet">
-    <script src="/app.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <livewire:counter />
+    @livewire(App\Http\Livewire\Todos::class)
 
-    @livewireScripts
+    <script src="/livewire.js"></script>
 </html>

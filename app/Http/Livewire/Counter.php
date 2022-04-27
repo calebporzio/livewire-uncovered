@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-class Counter extends \Livewire\Component
+class Counter
 {
     public $count = 0;
 
@@ -15,7 +15,9 @@ class Counter extends \Livewire\Component
     {
         return <<<'HTML'
             <div class="counter">
-                <span>{{ $count }}</span>
+                <div wire:loading class="loading"></div>
+
+                <span wire:loading.remove>{{ $count }}</span>
 
                 <button wire:click="increment">+</button>
             </div>
