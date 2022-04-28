@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-class Counter extends \Livewire\Component
+class Counter
 {
     public $count = 0;
 
