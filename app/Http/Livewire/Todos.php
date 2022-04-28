@@ -10,6 +10,7 @@ class Todos
     public function mount()
     {
         $this->title = 'Take out the trash...';
+
         $this->todos = collect();
     }
 

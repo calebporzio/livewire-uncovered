@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Support\Collection;
 use ReflectionClass;
 use ReflectionProperty;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 
 class Livewire
@@ -28,9 +28,11 @@ class Livewire
     }
 
     function fromSnapshot($snapshot) {
+        $this->checkSnapshot($snapshot);
+
         $component = new $snapshot['class'];
 
-        $properties = $this->propertiesFromData($snapshot['data'], $snapshot['meta']);
+        $properties = $this->hydrateProperties($snapshot['data'], $snapshot['meta']);
 
         return $this->setProperties($component, $properties);
     }
@@ -43,16 +45,17 @@ class Livewire
             $properties = $this->getProperties($component)
         );
 
-        [$data, $meta] = $this->dataFromProperties($properties);
+        [$data, $meta] = $this->dehydrateProperties($properties);
 
-        return [
-            $html,
-            [
-                'class' => get_class($component),
-                'data' => $data,
-                'meta' => $meta,
-            ],
+        $snapshot = [
+            'class' => get_class($component),
+            'data' => $data,
+            'meta' => $meta,
         ];
+
+        $snapshot['checksum'] = $this->generateChecksum($snapshot);
+
+        return [$html, $snapshot];
     }
 
     function getProperties($component) {
@@ -91,7 +94,7 @@ class Livewire
         $component->{$method}();
     }
 
-    function dataFromProperties($properties) {
+    function dehydrateProperties($properties) {
         $data = $meta = [];
 
         foreach ($properties as $key => $value) {
@@ -106,7 +109,7 @@ class Livewire
         return [$data, $meta];
     }
 
-    function propertiesFromData($data, $meta) {
+    function hydrateProperties($data, $meta) {
         $properties = [];
 
         foreach ($data as $key => $value) {
@@ -118,5 +121,25 @@ class Livewire
         }
 
         return $properties;
+    }
+
+    function checkSnapshot($snapshot) {
+        $checksum = $snapshot['checksum'];
+
+        unset($snapshot['checksum']);
+
+        $hash = $this->generateChecksum($snapshot);
+
+        if (! hash_equals($hash, $checksum)) {
+            throw new \Exception('Stop hacking me!!!');
+        }
+
+        return $snapshot;
+    }
+
+    function generateChecksum($snapshot) {
+        $key = app('encrypter')->getKey();
+
+        return hash_hmac('sha256', json_encode($snapshot), $key);
     }
 }

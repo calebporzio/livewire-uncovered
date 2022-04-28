@@ -15,7 +15,10 @@ Route::post('/livewire', function () {
 
     [$html, $snapshot] = (new App\Livewire)->toSnapshot($component);
 
-    return ['html' => $html, 'snapshot' => $snapshot];
+    return [
+        'html' => $html,
+        'snapshot' => $snapshot
+    ];
 });
 
 Blade::directive('livewire', function ($expression) {

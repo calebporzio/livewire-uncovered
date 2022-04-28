@@ -63,7 +63,6 @@ function sendRequest(el, addedToPayload, callback = () => {}) {
         })
 }
 
-
 function refreshWireModels(el) {
     let data = el.__livewireSnapshot.data
 
