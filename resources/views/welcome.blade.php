@@ -3,4 +3,3 @@
 
     @livewire(App\Http\Livewire\Counter::class)
 </html>
-
