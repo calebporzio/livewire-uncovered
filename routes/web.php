@@ -1,11 +1,22 @@
 <?php
 
+use App\Livewire;
+
 Route::view('/', 'welcome');
 
 Route::post('/livewire', function () {
-    dd(request('snapshot'));
-    dd(request('callMethod'));
-    return request()->all();
+    $component = (new Livewire)->fromSnapshot(request('snapshot'));
+
+    if ($method = request('callMethod')) {
+        (new Livewire)->callMethod($component, $method);
+    }
+
+    [$html, $snapshot] = (new Livewire)->toSnapshot($component);
+
+    return [
+        'html' => $html,
+        'snapshot' => $snapshot,
+    ];
 });
 
 Blade::directive('livewire', function ($expression) {
