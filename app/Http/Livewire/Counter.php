@@ -18,8 +18,6 @@ class Counter
                 <span>{{ $count }}</span>
 
                 <button wire:click="increment">+</button>
-
-                <input type="text">
             </div>
         HTML;
     }
