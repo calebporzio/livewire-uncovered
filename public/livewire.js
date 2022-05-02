@@ -10,7 +10,7 @@ function initWireModel(el) {
 
     let data = el.__livewire.data
 
-    el.addEventListener('change', e => {
+    el.addEventListener('input', e => {
         if (! e.target.hasAttribute('wire:model')) return
 
         let property = e.target.getAttribute('wire:model')
