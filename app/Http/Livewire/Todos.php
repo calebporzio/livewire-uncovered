@@ -13,11 +13,6 @@ class Todos
         $this->todos = ['One todo', 'Two todo'];
     }
 
-    public function updatedDraft()
-    {
-        $this->draft = strtoupper($this->draft);
-    }
-
     public function addTodo()
     {
         $this->todos[] = $this->draft;
