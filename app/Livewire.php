@@ -68,4 +68,8 @@ class Livewire
     function callMethod($component, $method) {
         $component->{$method}();
     }
+
+    function updateProperty($component, $property, $value) {
+        $component->{$property} = $value;
+    }
 }
