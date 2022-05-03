@@ -15,8 +15,6 @@ class Todos
 
     public function addTodo()
     {
-        dd($this->todos);
-
         $this->todos->push($this->draft);
 
         $this->draft = '';
