@@ -6,16 +6,16 @@ class Todos
 {
     public $draft = 'Some todo...';
 
-    public $todos = [];
+    public $todos;
 
     public function mount()
     {
-        $this->todos = ['One todo', 'Two todo'];
+        $this->todos = collect(['One todo', 'Two todo']);
     }
 
     public function addTodo()
     {
-        $this->todos[] = $this->draft;
+        $this->todos->push($this->draft);
 
         $this->draft = '';
     }

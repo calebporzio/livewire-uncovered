@@ -27,17 +27,6 @@ class Livewire
         HTML;
     }
 
-    function fromSnapshot($snapshot) {
-        $class = $snapshot['class'];
-        $data = $snapshot['data'];
-
-        $component = new $class;
-
-        $this->setProperties($component, $data);
-
-        return $component;
-    }
-
     function toSnapshot($component) {
         $html = Blade::render(
             $component->render(),
@@ -50,6 +39,17 @@ class Livewire
         ];
 
         return [$html, $snapshot];
+    }
+
+    function fromSnapshot($snapshot) {
+        $class = $snapshot['class'];
+        $data = $snapshot['data'];
+
+        $component = new $class;
+
+        $this->setProperties($component, $data);
+
+        return $component;
     }
 
     function setProperties($component, $properties) {
