@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 class Todos
 {
-    public $draft = 'Some todos...';
+    public $draft = 'Some todo...';
 
     public $todos = [];
 
